@@ -37,12 +37,15 @@ const BlogPage = () => {
   }, []);
 
   const handlePostClick = (post: BlogPost) => {
+    console.log('Blog card clicked, starting transition...', post.title);
     setPendingPost(post);
     setIsTransitioning(true);
     setShowBlackTransition(true);
+    console.log('Black transition started');
     
     // Start Matrix rain after black fade completes
     setTimeout(() => {
+      console.log('Starting matrix rain animation');
       setShowMatrixRain(true);
     }, 600);
   };

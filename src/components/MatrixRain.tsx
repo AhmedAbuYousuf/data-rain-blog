@@ -16,10 +16,14 @@ const MatrixRain = ({ isVisible, onComplete }: MatrixRainProps) => {
   const [showCode, setShowCode] = useState(false);
 
   useEffect(() => {
+    console.log('MatrixRain useEffect triggered, isVisible:', isVisible);
+    
     if (!isVisible) {
       setShowCode(false);
       return;
     }
+
+    console.log('Setting up matrix rain animation...');
 
     const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     const drops: any[] = [];
@@ -40,9 +44,11 @@ const MatrixRain = ({ isVisible, onComplete }: MatrixRainProps) => {
     }
 
     setRainDrops(drops);
+    console.log('Rain drops created:', drops.length);
 
     // Start showing code after the black fade-in
     const codeTimer = setTimeout(() => {
+      console.log('Starting to show matrix code');
       setShowCode(true);
     }, 800);
 
@@ -58,6 +64,8 @@ const MatrixRain = ({ isVisible, onComplete }: MatrixRainProps) => {
   }, [isVisible, onComplete]);
 
   if (!isVisible) return null;
+
+  console.log('Rendering MatrixRain component, showCode:', showCode, 'rainDrops:', rainDrops.length);
 
   return (
     <div className="matrix-rain fixed inset-0 z-50 pointer-events-none">
