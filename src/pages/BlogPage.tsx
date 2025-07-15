@@ -13,7 +13,9 @@ const BlogPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
   const [showMatrixRain, setShowMatrixRain] = useState(false);
+  const [showBlackTransition, setShowBlackTransition] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [pendingPost, setPendingPost] = useState<BlogPost | null>(null);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -35,15 +37,23 @@ const BlogPage = () => {
   }, []);
 
   const handlePostClick = (post: BlogPost) => {
+    setPendingPost(post);
     setIsTransitioning(true);
-    setShowMatrixRain(true);
+    setShowBlackTransition(true);
+    
+    // Start Matrix rain after black fade completes
+    setTimeout(() => {
+      setShowMatrixRain(true);
+    }, 600);
   };
 
   const handleMatrixComplete = () => {
     setShowMatrixRain(false);
+    setShowBlackTransition(false);
     setIsTransitioning(false);
-    setSelectedPost(selectedPost);
+    setSelectedPost(pendingPost);
     setIsModalOpen(true);
+    setPendingPost(null);
   };
 
   const handleCloseModal = () => {
@@ -60,13 +70,15 @@ const BlogPage = () => {
   };
 
   const handleBlogCardClick = (post: BlogPost) => {
-    setSelectedPost(post);
     handlePostClick(post);
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Header onDemoClick={handleDemoClick} />
+      
+      {/* Black Transition Overlay */}
+      <div className={`page-transition ${showBlackTransition ? 'active' : ''}`} />
       
       {/* Matrix Rain Animation */}
       <MatrixRain isVisible={showMatrixRain} onComplete={handleMatrixComplete} />

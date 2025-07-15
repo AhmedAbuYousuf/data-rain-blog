@@ -13,9 +13,13 @@ const MatrixRain = ({ isVisible, onComplete }: MatrixRainProps) => {
     animationDuration: number;
     delay: number;
   }>>([]);
+  const [showCode, setShowCode] = useState(false);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible) {
+      setShowCode(false);
+      return;
+    }
 
     const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     const drops: any[] = [];
@@ -37,22 +41,30 @@ const MatrixRain = ({ isVisible, onComplete }: MatrixRainProps) => {
 
     setRainDrops(drops);
 
-    // Auto complete after animation
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 3000);
+    // Start showing code after the black fade-in
+    const codeTimer = setTimeout(() => {
+      setShowCode(true);
+    }, 800);
 
-    return () => clearTimeout(timer);
+    // Auto complete after full animation sequence
+    const completeTimer = setTimeout(() => {
+      onComplete();
+    }, 3500);
+
+    return () => {
+      clearTimeout(codeTimer);
+      clearTimeout(completeTimer);
+    };
   }, [isVisible, onComplete]);
 
   if (!isVisible) return null;
 
   return (
     <div className="matrix-rain fixed inset-0 z-50 pointer-events-none">
-      {rainDrops.map((drop) => (
+      {showCode && rainDrops.map((drop) => (
         <div
           key={drop.id}
-          className="matrix-code absolute"
+          className="matrix-code animate absolute"
           style={{
             left: `${drop.left}%`,
             animationDuration: `${drop.animationDuration}s`,
@@ -62,11 +74,19 @@ const MatrixRain = ({ isVisible, onComplete }: MatrixRainProps) => {
           {drop.text}
         </div>
       ))}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-6xl font-bold text-electric-blue animate-pulse">
-          TechBlog
+      {showCode && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div 
+            className="text-6xl font-bold text-electric-blue animate-pulse"
+            style={{
+              animation: 'matrix-code-fade-in 1s ease-out 1.2s forwards, pulse 2s infinite 2.2s',
+              opacity: 0
+            }}
+          >
+            TechBlog
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
