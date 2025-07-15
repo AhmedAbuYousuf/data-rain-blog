@@ -8,35 +8,48 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 223 13% 17%;
+    --foreground: 268 13% 86%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 223 13% 17%;
+    --card-foreground: 268 13% 86%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 223 13% 17%;
+    --popover-foreground: 268 13% 86%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 253 78% 64%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 226 13% 40%;
+    --secondary-foreground: 268 13% 86%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 226 13% 40%;
+    --muted-foreground: 268 13% 68%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 205 76% 59%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 226 13% 40%;
+    --input: 226 13% 40%;
+    --ring: 253 78% 64%;
 
-    --radius: 0.5rem;
+    --soft-lilac: 268 45% 88%;
+    --electric-blue: 205 76% 59%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--electric-blue)));
+    --gradient-secondary: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
+    --gradient-matrix: linear-gradient(45deg, hsl(var(--primary) / 0.8), hsl(var(--electric-blue) / 0.8));
+    
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--electric-blue) / 0.4);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +113,145 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* Matrix Rain Animation */
+  .matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: var(--gradient-matrix);
+    opacity: 0;
+    animation: matrix-fade-in 2s ease-out forwards;
+  }
+
+  .matrix-code {
+    position: absolute;
+    color: hsl(var(--electric-blue));
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    white-space: pre;
+    animation: matrix-fall linear infinite;
+    text-shadow: 0 0 5px hsl(var(--electric-blue) / 0.8);
+  }
+
+  /* Blog Card Animations */
+  .blog-card {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .blog-card:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Navigation Link Animations */
+  .nav-link {
+    @apply relative transition-all duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background: var(--gradient-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Blur Overlay for Blog Content */
+  .blog-overlay {
+    backdrop-filter: blur(10px);
+    background: hsl(var(--background) / 0.85);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  /* Button Variants */
+  .btn-demo {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .btn-demo:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Scroll Animation */
+  .scroll-fade-in {
+    @apply opacity-0 translate-y-8;
+    animation: scroll-reveal 0.6s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+}
+
+@keyframes matrix-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
