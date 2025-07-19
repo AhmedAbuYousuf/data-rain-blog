@@ -232,6 +232,14 @@ All colors MUST be HSL.
   .transition-bounce {
     transition: var(--transition-bounce);
   }
+
+  .bg-electric-blue\/20 {
+    background-color: hsl(var(--electric-blue) / 0.2);
+  }
+
+  .border-electric-blue\/40 {
+    border-color: hsl(var(--electric-blue) / 0.4);
+  }
 }
 
 @keyframes matrix-fade-in {
