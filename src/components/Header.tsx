@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/logo.png';
 
@@ -8,13 +9,38 @@ interface HeaderProps {
 
 const Header = ({ onDemoClick }: HeaderProps) => {
   const [activeNav, setActiveNav] = useState('home');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      // If we're on the home page, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // If we're on another page, navigate to home
+      navigate('/');
+    }
+    setActiveNav('home');
+  };
 
   const scrollToSection = (sectionId: string) => {
-    setActiveNav(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home first
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // If on home page, scroll directly
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    setActiveNav(sectionId);
   };
 
   return (
@@ -31,7 +57,7 @@ const Header = ({ onDemoClick }: HeaderProps) => {
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <button
-            onClick={() => scrollToSection('home')}
+            onClick={handleHomeClick}
             className={`nav-link ${activeNav === 'home' ? 'active' : ''}`}
           >
             Home
@@ -52,7 +78,7 @@ const Header = ({ onDemoClick }: HeaderProps) => {
 
         {/* Navigation CTA */}
         <Button 
-          onClick={() => window.location.href = '/blogs'} 
+          onClick={() => navigate('/blogs')} 
           variant="outline"
           className="hidden md:block"
         >
