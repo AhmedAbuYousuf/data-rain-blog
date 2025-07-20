@@ -122,20 +122,20 @@ const BlogPage = () => {
           </div>
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
-              {/* Left Content - Text with transparency */}
-              <div className="animate-on-scroll relative z-20">
+            <div className="flex items-center justify-center min-h-[70vh]">
+              {/* Centered Content */}
+              <div className="animate-on-scroll relative z-20 text-center max-w-4xl">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                   <span className="text-foreground/90">Beyond the Surface:</span>
                   <span className="block gradient-primary bg-clip-text text-transparent opacity-95">
                     Explore, Learn, Grow
                   </span>
                 </h1>
-                <p className="text-xl md:text-2xl text-muted-foreground/80 mb-8 leading-relaxed backdrop-blur-sm">
+                <p className="text-xl md:text-2xl text-muted-foreground/80 mb-8 leading-relaxed backdrop-blur-sm max-w-3xl mx-auto">
                   Explore a world of insightful articles, thoughtful discussions, and inspiring stories. 
                   Our blog is dedicated to bringing you fresh perspectives on technology, helping you stay informed and inspired.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex justify-center">
                   <Button 
                     size="lg" 
                     variant="outline" 
@@ -144,16 +144,6 @@ const BlogPage = () => {
                   >
                     Read More
                   </Button>
-                </div>
-              </div>
-
-              {/* Right side - mostly empty to let background animation show */}
-              <div className="animate-on-scroll relative z-10" style={{ animationDelay: '0.3s' }}>
-                <div className="relative w-full h-[400px] flex items-center justify-center">
-                  {/* Subtle accent elements */}
-                  <div className="absolute top-20 left-20 w-6 h-6 rounded-full bg-primary/30 animate-pulse"></div>
-                  <div className="absolute bottom-32 right-16 w-8 h-8 rounded-full bg-accent/30 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                  <div className="absolute top-1/2 left-1/3 w-4 h-4 rounded-full bg-electric-blue/30 animate-pulse" style={{ animationDelay: '2s' }}></div>
                 </div>
               </div>
             </div>
