@@ -50,9 +50,13 @@ const Header = ({ onDemoClick }: HeaderProps) => {
           </button>
         </nav>
 
-        {/* Demo Button */}
-        <Button onClick={onDemoClick} variant="demo">
-          Book a Demo
+        {/* Navigation CTA */}
+        <Button 
+          onClick={() => window.location.href = '/blogs'} 
+          variant="outline"
+          className="hidden md:block"
+        >
+          All Blogs
         </Button>
       </div>
     </header>

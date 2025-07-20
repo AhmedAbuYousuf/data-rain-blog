@@ -99,39 +99,51 @@ const BlogPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     size="lg" 
-                    className="btn-demo text-lg px-8 py-4"
-                    onClick={() => setIsDemoFormOpen(true)}
-                  >
-                    Get Started Today
-                  </Button>
-                  <Button 
-                    size="lg" 
                     variant="outline" 
                     className="text-lg px-8 py-4"
-                    onClick={() => document.getElementById('latest')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => navigate('/blogs')}
                   >
                     Read More
                   </Button>
                 </div>
               </div>
 
-              {/* Right Content - Globe/Tech Visual */}
+              {/* Right Content - Enhanced Tech Visual */}
               <div className="animate-on-scroll relative" style={{ animationDelay: '0.3s' }}>
-                <div className="relative w-full h-96 flex items-center justify-center">
-                  {/* Animated tech orb */}
-                  <div className="relative w-80 h-80 rounded-full border-4 border-primary/30 flex items-center justify-center">
-                    <div className="w-64 h-64 rounded-full border-2 border-accent/40 flex items-center justify-center animate-pulse">
-                      <div className="w-48 h-48 rounded-full gradient-primary flex items-center justify-center opacity-20"></div>
+                <div className="relative w-full h-[500px] flex items-center justify-center">
+                  {/* Main animated tech orb - significantly larger */}
+                  <div className="relative w-96 h-96 rounded-full border-4 border-primary/30 flex items-center justify-center animate-slow-spin">
+                    <div className="w-80 h-80 rounded-full border-2 border-accent/40 flex items-center justify-center animate-pulse">
+                      <div className="w-64 h-64 rounded-full gradient-primary flex items-center justify-center opacity-30 animate-pulse" style={{ animationDelay: '0.5s' }}>
+                        <div className="w-48 h-48 rounded-full border border-primary/20 flex items-center justify-center">
+                          <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span className="text-2xl font-bold text-primary">TECH</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    {/* Floating tech icons */}
-                    <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center animate-bounce">
-                      <span className="text-primary font-bold">AI</span>
+                    
+                    {/* Enhanced floating tech icons with better positioning */}
+                    <div className="absolute -top-4 right-12 w-16 h-16 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center animate-bounce shadow-lg">
+                      <span className="text-primary font-bold text-lg">AI</span>
                     </div>
-                    <div className="absolute bottom-12 left-6 w-10 h-10 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center" style={{ animationDelay: '1s' }}>
-                      <span className="text-accent text-sm">⚡</span>
+                    <div className="absolute bottom-8 -left-8 w-14 h-14 rounded-full bg-accent/20 border-2 border-accent/40 flex items-center justify-center animate-bounce shadow-lg" style={{ animationDelay: '1s' }}>
+                      <span className="text-accent text-xl">⚡</span>
                     </div>
-                    <div className="absolute top-16 left-16 w-8 h-8 rounded-full bg-electric-blue/20 border border-electric-blue/40" style={{ animationDelay: '2s' }}></div>
+                    <div className="absolute top-20 -left-6 w-12 h-12 rounded-full bg-electric-blue/30 border-2 border-electric-blue/50 animate-bounce shadow-lg" style={{ animationDelay: '2s' }}>
+                      <span className="text-electric-blue text-sm">🚀</span>
+                    </div>
+                    <div className="absolute -bottom-6 right-16 w-12 h-12 rounded-full bg-secondary/30 border-2 border-secondary/50 animate-bounce shadow-lg" style={{ animationDelay: '1.5s' }}>
+                      <span className="text-secondary">💡</span>
+                    </div>
+                    
+                    {/* Additional orbit rings */}
+                    <div className="absolute inset-0 w-full h-full rounded-full border border-primary/10 animate-spin" style={{ animationDuration: '20s' }}></div>
+                    <div className="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full border border-accent/10 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
                   </div>
+                  
+                  {/* Background glow effect */}
+                  <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent rounded-full blur-xl"></div>
                 </div>
               </div>
             </div>
