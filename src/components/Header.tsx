@@ -74,16 +74,18 @@ const Header = ({ onDemoClick }: HeaderProps) => {
           >
             Hot
           </button>
+          <button
+            onClick={() => navigate('/blogs')}
+            className="nav-link"
+          >
+            All Blogs
+          </button>
         </nav>
 
-        {/* Navigation CTA */}
-        <Button 
-          onClick={() => navigate('/blogs')} 
-          variant="outline"
-          className="hidden md:block"
-        >
-          All Blogs
-        </Button>
+        {/* Mobile menu toggle */}
+        <div className="md:hidden">
+          {/* Space for mobile menu button if needed */}
+        </div>
       </div>
     </header>
   );

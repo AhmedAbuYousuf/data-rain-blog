@@ -82,49 +82,68 @@ const BlogPage = () => {
           {/* Background with gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/10"></div>
           
-          {/* Animated Background Overlay */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="relative w-full h-full flex items-center justify-center opacity-30">
-              {/* Main animated tech orb as background overlay */}
-              <div className="absolute right-1/4 top-1/2 transform -translate-y-1/2 w-96 h-96 rounded-full border-4 border-primary/20 flex items-center justify-center animate-slow-spin">
-                <div className="w-80 h-80 rounded-full border-2 border-accent/30 flex items-center justify-center animate-pulse">
-                  <div className="w-64 h-64 rounded-full gradient-primary flex items-center justify-center opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }}>
-                    <div className="w-48 h-48 rounded-full border border-primary/10 flex items-center justify-center">
-                      <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-xl font-bold text-primary/60">TECH</span>
+          {/* Animated Background Overlay - Full Coverage */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="relative w-full h-full opacity-25">
+              {/* Main central tech orb */}
+              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border-4 border-primary/20 flex items-center justify-center animate-slow-spin">
+                <div className="w-[500px] h-[500px] rounded-full border-2 border-accent/30 flex items-center justify-center animate-pulse">
+                  <div className="w-[400px] h-[400px] rounded-full gradient-primary flex items-center justify-center opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }}>
+                    <div className="w-[300px] h-[300px] rounded-full border border-primary/10 flex items-center justify-center">
+                      <div className="w-[200px] h-[200px] rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-4xl font-bold text-primary/60">TECH</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                
-                {/* Floating tech icons in background */}
-                <div className="absolute -top-4 right-12 w-16 h-16 rounded-full bg-primary/15 border-2 border-primary/30 flex items-center justify-center animate-bounce shadow-lg">
-                  <span className="text-primary/70 font-bold text-lg">AI</span>
+              </div>
+
+              {/* Corner tech orbs */}
+              <div className="absolute top-10 left-10 w-32 h-32 rounded-full border-2 border-primary/15 flex items-center justify-center animate-pulse">
+                <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-primary/60 font-bold">AI</span>
                 </div>
-                <div className="absolute bottom-8 -left-8 w-14 h-14 rounded-full bg-accent/15 border-2 border-accent/30 flex items-center justify-center animate-bounce shadow-lg" style={{ animationDelay: '1s' }}>
-                  <span className="text-accent/70 text-xl">⚡</span>
-                </div>
-                <div className="absolute top-20 -left-6 w-12 h-12 rounded-full bg-electric-blue/20 border-2 border-electric-blue/40 animate-bounce shadow-lg" style={{ animationDelay: '2s' }}>
-                  <span className="text-electric-blue/70 text-sm">🚀</span>
-                </div>
-                <div className="absolute -bottom-6 right-16 w-12 h-12 rounded-full bg-secondary/20 border-2 border-secondary/40 animate-bounce shadow-lg" style={{ animationDelay: '1.5s' }}>
-                  <span className="text-secondary/70">💡</span>
-                </div>
-                
-                {/* Additional orbit rings */}
-                <div className="absolute inset-0 w-full h-full rounded-full border border-primary/5 animate-spin" style={{ animationDuration: '20s' }}></div>
-                <div className="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full border border-accent/5 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
               </div>
               
-              {/* Background glow effect */}
-              <div className="absolute right-1/4 top-1/2 transform -translate-y-1/2 w-96 h-96 bg-gradient-radial from-primary/10 via-transparent to-transparent rounded-full blur-2xl"></div>
+              <div className="absolute top-20 right-16 w-28 h-28 rounded-full border-2 border-accent/15 flex items-center justify-center animate-pulse" style={{ animationDelay: '1s' }}>
+                <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center">
+                  <span className="text-accent/60 text-2xl">⚡</span>
+                </div>
+              </div>
+
+              <div className="absolute bottom-16 left-20 w-24 h-24 rounded-full border-2 border-electric-blue/15 flex items-center justify-center animate-pulse" style={{ animationDelay: '2s' }}>
+                <div className="w-16 h-16 rounded-full bg-electric-blue/10 flex items-center justify-center">
+                  <span className="text-electric-blue/60 text-xl">🚀</span>
+                </div>
+              </div>
+
+              <div className="absolute bottom-20 right-12 w-26 h-26 rounded-full border-2 border-secondary/15 flex items-center justify-center animate-pulse" style={{ animationDelay: '1.5s' }}>
+                <div className="w-18 h-18 rounded-full bg-secondary/10 flex items-center justify-center">
+                  <span className="text-secondary/60 text-lg">💡</span>
+                </div>
+              </div>
+
+              {/* Floating particles across the section */}
+              <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-primary/20 animate-bounce"></div>
+              <div className="absolute top-3/4 right-1/3 w-3 h-3 rounded-full bg-accent/20 animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute top-1/3 right-1/4 w-2 h-2 rounded-full bg-electric-blue/20 animate-bounce" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute bottom-1/3 left-1/3 w-3 h-3 rounded-full bg-secondary/20 animate-bounce" style={{ animationDelay: '1.5s' }}></div>
+              
+              {/* Large orbit rings spanning the section */}
+              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-primary/5 animate-spin" style={{ animationDuration: '30s' }}></div>
+              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-accent/5 animate-spin" style={{ animationDuration: '40s', animationDirection: 'reverse' }}></div>
+              
+              {/* Multiple background glow effects */}
+              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/10 via-transparent to-transparent rounded-full blur-3xl"></div>
+              <div className="absolute top-10 left-10 w-48 h-48 bg-gradient-radial from-accent/10 via-transparent to-transparent rounded-full blur-2xl"></div>
+              <div className="absolute bottom-10 right-10 w-64 h-64 bg-gradient-radial from-electric-blue/10 via-transparent to-transparent rounded-full blur-2xl"></div>
             </div>
           </div>
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="flex items-center justify-center min-h-[70vh]">
+            <div className="flex items-center justify-center min-h-[70vh] w-full">
               {/* Centered Content */}
-              <div className="animate-on-scroll relative z-20 text-center max-w-4xl">
+              <div className="animate-on-scroll relative z-20 text-center w-full max-w-4xl mx-auto">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                   <span className="text-foreground/90">Beyond the Surface:</span>
                   <span className="block gradient-primary bg-clip-text text-transparent opacity-95">
